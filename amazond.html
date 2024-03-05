@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Company Profile</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Basic styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Company details */
+        .company-details {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .company-details h2 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .company-details p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        /* Recent transactions */
+        .recent-transactions {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .recent-transactions h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .transaction-item {
+            margin-bottom: 10px;
+        }
+        /* Ratings */
+        .ratings {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .ratings h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .ratings p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        /* Location */
+        .location {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .location h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .location p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+         /* Add custom styles here */
+         .company-info {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+        .company-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            height: 400px; /* Set a fixed height for the company cards */
+        }
+        .company-card h3 {
+            margin-top: 0;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 300px; /* Set a fixed height for the canvas elements */
+            margin: 0 auto; /* Center the canvas elements horizontally */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="company-details">
+            <h2>Amazon</h2>
+            <p>Amazon is a global tech giant renowned for its e-commerce, cloud computing, and digital streaming services. Founded in 1994, it began as an online bookstore and has since evolved into a diverse platform offering everything from retail goods to entertainment content. With a focus on innovation and customer-centricity, Amazon has become a dominant force in the tech industry, shaping the way people shop, consume media, and access digital services worldwide.</p>
+        </div>
+
+        <main>
+            <div class="company-info">
+                <div class="company-card">
+                    <h3>SuperMart Enterprises
+                    </h3>
+                    <canvas id="flipkartChart" width="200" height="200"></canvas>
+                </div>
+                <div class="company-card">
+                    <h3>GlobalMart Solutions
+                    </h3>
+                    <canvas id="amazonChart" width="200" height="200"></canvas>
+                </div>
+                <div class="company-card">
+                    <h3>ShopConnect</h3>
+                    <canvas id="haberChart" width="200" height="200"></canvas>
+                </div>
+                <div class="company-card">
+                    <h3>RetailX Solutions
+                    </h3>
+                    <canvas id="boschChart" width="200" height="200"></canvas>
+                </div>
+                <div class="company-card">
+                    <h3>Tesla</h3>
+                    <canvas id="teslaChart" width="200" height="200"></canvas>
+                </div>
+                <div class="company-card">
+                    <h3>Prime Retailers Alliance</h3>
+                    <canvas id="samsungChart" width="200" height="200"></canvas>
+                </div>
+            </div>
+        </main>
+
+        <div class="ratings">
+            <h3>Ratings</h3>
+            <p>Local Rating: 4.5/5</p>
+            <p>Rating Agency Rating: A+</p>
+        </div>
+
+        <div class="location">
+            <h3>Location</h3>
+            <p>Address: 123 Main Street, City, Country</p>
+            <!-- Add map or location details here -->
+        </div>
+    </div>
+
+    <script>
+        // Data for pie charts (dummy data)
+        const pieChartData = [
+            [
+                { label: 'In Progress', color: '#007bff', value: 40 },
+                { label: 'Completed', color: '#28a745', value: 30 },
+                { label: 'Delayed', color: '#dc3545', value: 30 },
+            ],
+            [
+                { label: 'In Progress', color: '#007bff', value: 20 },
+                { label: 'Completed', color: '#28a745', value: 50 },
+                { label: 'Delayed', color: '#dc3545', value: 30 },
+            ],
+            [
+                { label: 'In Progress', color: '#007bff', value: 60 },
+                { label: 'Completed', color: '#28a745', value: 20 },
+                { label: 'Delayed', color: '#dc3545', value: 20 },
+            ],
+            [
+                { label: 'In Progress', color: '#007bff', value: 10 },
+                { label: 'Completed', color: '#28a745', value: 70 },
+                { label: 'Delayed', color: '#dc3545', value: 20 },
+            ],
+            [
+                { label: 'In Progress', color: '#007bff', value: 50 },
+                { label: 'Completed', color: '#28a745', value: 40 },
+                { label: 'Delayed', color: '#dc3545', value: 10 },
+            ],
+            [
+                { label: 'In Progress', color: '#007bff', value: 30 },
+                { label: 'Completed', color: '#28a745', value: 50 },
+                { label: 'Delayed', color: '#dc3545', value: 20 },
+            ],
+        ];
+
+        // Options for pie charts
+        const pieChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'right',
+            },
+        };
+
+        // Render pie charts
+        const renderPieChart = (canvasId, data) => {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: data.map(item => item.label),
+                    datasets: [{
+                        data: data.map(item => item.value),
+                        backgroundColor: data.map(item => item.color),
+                    }],
+                },
+                options: pieChartOptions,
+            });
+        };
+
+        // Call renderPieChart for each company
+        renderPieChart('flipkartChart', pieChartData[0]);
+        renderPieChart('amazonChart', pieChartData[1]);
+        renderPieChart('haberChart', pieChartData[2]);
+        renderPieChart('boschChart', pieChartData[3]);
+        renderPieChart('teslaChart', pieChartData[4]);
+        renderPieChart('samsungChart', pieChartData[5]);
+    </script>
+</body>
+</html>

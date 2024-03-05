@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Company Details</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Add custom styles here */
+        .company-info {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+        .company-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            height: 400px; /* Set a fixed height for the company cards */
+        }
+        .company-card h3 {
+            margin-top: 0;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 300px; /* Set a fixed height for the canvas elements */
+            margin: 0 auto; /* Center the canvas elements horizontally */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left">Cooo</div>
+            <div class="right">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Register</a></li>
+                    <li><a href="/"></a></li>                                
+                </ul>       
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="company-info">
+            <div class="company-card">
+                <h3>Flipkart</h3>
+                <canvas id="flipkartChart" width="200" height="200"></canvas>
+            </div>
+            <div class="company-card">
+                <h3>Amazon</h3>
+                <canvas id="amazonChart" width="200" height="200"></canvas>
+            </div>
+            <div class="company-card">
+                <h3>Haber</h3>
+                <canvas id="haberChart" width="200" height="200"></canvas>
+            </div>
+            <div class="company-card">
+                <h3>Bosch</h3>
+                <canvas id="boschChart" width="200" height="200"></canvas>
+            </div>
+            <div class="company-card">
+                <h3>Tesla</h3>
+                <canvas id="teslaChart" width="200" height="200"></canvas>
+            </div>
+            <div class="company-card">
+                <h3>Samsung</h3>
+                <canvas id="samsungChart" width="200" height="200"></canvas>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Data for pie charts (dummy data)
+        const pieChartData = [
+            [
+                { label: 'In Progress', color: '#007bff', value: 40 },
+                { label: 'Completed', color: '#28a745', value: 30 },
+                { label: 'Delayed', color: '#dc3545', value: 30 },
+            ],
+            [
+                { label: 'In Progress', color: '#007bff', value: 20 },
+                { label: 'Completed', color: '#28a745', value: 50 },
+                { label: 'Delayed', color: '#dc3545', value: 30 },
+            ],
+            [
+                { label: 'In Progress', color: '#007bff', value: 60 },
+                { label: 'Completed', color: '#28a745', value: 20 },
+                { label: 'Delayed', color: '#dc3545', value: 20 },
+            ],
+            [
+                { label: 'In Progress', color: '#007bff', value: 10 },
+                { label: 'Completed', color: '#28a745', value: 70 },
+                { label: 'Delayed', color: '#dc3545', value: 20 },
+            ],
+            [
+                { label: 'In Progress', color: '#007bff', value: 50 },
+                { label: 'Completed', color: '#28a745', value: 40 },
+                { label: 'Delayed', color: '#dc3545', value: 10 },
+            ],
+            [
+                { label: 'In Progress', color: '#007bff', value: 30 },
+                { label: 'Completed', color: '#28a745', value: 50 },
+                { label: 'Delayed', color: '#dc3545', value: 20 },
+            ],
+        ];
+
+        // Options for pie charts
+        const pieChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'right',
+            },
+        };
+
+        // Render pie charts
+        const renderPieChart = (canvasId, data) => {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: data.map(item => item.label),
+                    datasets: [{
+                        data: data.map(item => item.value),
+                        backgroundColor: data.map(item => item.color),
+                    }],
+                },
+                options: pieChartOptions,
+            });
+        };
+
+        // Call renderPieChart for each company
+        renderPieChart('flipkartChart', pieChartData[0]);
+        renderPieChart('amazonChart', pieChartData[1]);
+        renderPieChart('haberChart', pieChartData[2]);
+        renderPieChart('boschChart', pieChartData[3]);
+        renderPieChart('teslaChart', pieChartData[4]);
+        renderPieChart('samsungChart', pieChartData[5]);
+    </script>
+</body>
+</html>
