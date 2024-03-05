@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login.css" />
+    <title>signup</title>
+  </head>
+  <body>
+    <div class="signup-container">
+      <h1>Register</h1>
+      <a href="index.html" class="back-button">
+        <span class="arrow">&larr;</span> Back to Home Page
+      </a>
+
+      <form id="signupForm" method="post">
+        <!-- Added id="signupForm" -->
+        <input
+          type="text"
+          id="organizationInp"
+          placeholder="Organization Name"
+          required
+        />
+        <input
+          type="text"
+          id="panInp"
+          placeholder="Organization Pan ID"
+          required
+        />
+        <input
+          type="text"
+          id="licenseInp"
+          placeholder="Business License No."
+          required
+        />
+        <button type="submit" class="btn">Register</button>
+      </form>
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </body>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import {
+      getDatabase,
+      set,
+      ref,
+    } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+    } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+    // Your Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyA3fICrYAeW9mqrUALkUmAQ3IgTuMyMo6I",
+      authDomain: "techtitans-1527c.firebaseapp.com",
+      databaseURL: "https://techtitans-1527c-default-rtdb.firebaseio.com",
+      projectId: "techtitans-1527c",
+      storageBucket: "techtitans-1527c.appspot.com",
+      messagingSenderId: "348144144043",
+      appId: "1:348144144043:web:85cb005cbb59b83be071ee",
+      measurementId: "G-8L5DSV9D8D",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+    // Form submission event handler
+    document
+      .getElementById("signupForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        var organizationName = document.getElementById("organizationInp").value;
+        var organizationPan = document.getElementById("panInp").value;
+        var businessLicenseNo = document.getElementById("licenseInp").value;
+
+        // Example code for creating user with email and password
+        // This will need to be modified according to your application's requirements
+
+        // createUserWithEmailAndPassword(auth, email, password)
+        //   .then((userCredential) => {
+        //     // User signed up successfully
+        //     const user = userCredential.user;
+        //     alert("User created!");
+        //     // Navigate to the next page after successful signup
+        //     window.location.href = "uth.html";
+        //   })
+        //   .catch((error) => {
+        //     // Handle errors
+        //     const errorCode = error.code;
+        //     const errorMessage = error.message;
+        //     alert(errorMessage);
+        //   });
+
+        // Placeholder code for demonstration, replace with actual functionality
+        alert("Form submitted successfully!");
+        // Navigate to the next page after successful form submission
+        // window.location.href = "uth.html";
+      });
+  </script>
+</html>
